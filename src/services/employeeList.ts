@@ -58,6 +58,18 @@ const employees: Employee[] = [
   },
 ];
 export async function getEmployees(): Promise<Employee[]> {
-  await new Promise((r) => setTimeout(r, 600));
+  console.log("getEmployees() called:", new Date().toLocaleTimeString());
+
+  await new Promise((resolve) => setTimeout(resolve, 600));
+
   return employees;
+}
+export async function createEmployee(employee: Employee): Promise<Employee> {
+  console.log("Creating employee:", employee);
+
+  await new Promise((resolve) => setTimeout(resolve, 800));
+
+  employees.push(employee);
+
+  return employee;
 }

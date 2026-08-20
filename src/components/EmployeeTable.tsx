@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { getEmployees } from "../services/employeeService";
+import { getEmployees } from "../services/employeeList";
 export default function EmployeeTable() {
   const { data, isPending, isError, error, isFetching, refetch } = useQuery({
     queryKey: ["employees"],
     queryFn: getEmployees,
-    staleTime: 60000,
+    staleTime: 10_000,
+    gcTime: 30_000,
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
   });
   if (isPending)
     return (
